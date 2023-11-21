@@ -163,12 +163,12 @@ function removeFirstOccurrences(str, value) {
  *   removeLastOccurrences('ABABAB', 'BA') => 'ABAB'.
  */
 function removeLastOccurrences(str, value) {
-  const reverseString = (string) => {
+  const reversedString = (string) => {
     return string.split('').reverse().join('');
   };
-  const reverseStr = reverseString(str);
-  const reverseValue = reverseString(value);
-  return reverseString(reverseStr.replace(reverseValue, ''));
+  const reverseStr = reversedString(str);
+  const reverseValue = reversedString(value);
+  return reversedString(reverseStr.replace(reverseValue, ''));
 }
 
 /**
@@ -184,7 +184,7 @@ function removeLastOccurrences(str, value) {
  *   sumOfCodes() => 0
  */
 function sumOfCodes(str) {
-  if (!str) return 0
+  if (!str) return 0;
   return str.split('').reduce((sum, cur) => cur.charCodeAt() + sum, 0);
 }
 
@@ -295,7 +295,7 @@ function containsSubstring(str, substring) {
  *   countVowels('aEiOu') => 5
  *   countVowels('XYZ') => 1
  */
-function countVowels( str ) {
+function countVowels(str) {
   const newStr = str.match(/[aeiouy]/gi);
   return newStr ? newStr.length : 0;
 }
@@ -314,8 +314,8 @@ function countVowels( str ) {
  *   isPalindrome('No lemon, no melon') => true
  */
 function isPalindrome(str) {
-  const newStr = str.toLowerCase().replace(/\W/g, "");
-  return newStr === newStr.split("").reverse().join("");
+  const newStr = str.toLowerCase().replace(/\W/g, '');
+  return newStr === newStr.split('').reverse().join('');
 }
 
 /**
@@ -332,10 +332,10 @@ function isPalindrome(str) {
  */
 function findLongestWord(sentence) {
   return sentence
-    .split(" ")
+    .split(' ')
     .reduce(
       (words, biggest) => (words.length >= biggest.length ? words : biggest),
-      ""
+      ''
     );
 }
 
@@ -349,11 +349,11 @@ function findLongestWord(sentence) {
  *   reverseWords('Hello World') => 'olleH dlroW'
  *   reverseWords('The Quick Brown Fox') => 'ehT kciuQ nworB xoF'
  */
-function reverseWords( str ) {
+function reverseWords(str) {
   return str
-    .split(" ")
-    .map((words) => words.split("").reverse().join(""))
-    .join(" ");
+    .split(' ')
+    .map((words) => words.split('').reverse().join(''))
+    .join(' ');
 }
 
 /**
@@ -367,15 +367,15 @@ function reverseWords( str ) {
  *   invertCase('JavaScript is Fun') => 'jAVAsCRIPT IS fUN'
  *   invertCase('12345') => '12345'
  */
-function invertCase( str ) {
+function invertCase(str) {
   return str
-    .split("")
+    .split('')
     .map((letter) =>
       letter === letter.toLowerCase()
         ? letter.toUpperCase()
         : letter.toLowerCase()
     )
-    .join("");
+    .join('');
 }
 
 /**
@@ -391,8 +391,8 @@ function invertCase( str ) {
  *   getStringFromTemplate('John','Doe') => 'Hello, John Doe!'
  *   getStringFromTemplate('Chuck','Norris') => 'Hello, Chuck Norris!'
  */
-function getStringFromTemplate( firstName, lastName ) {
-return `Hello, ${firstName} ${lastName}!`
+function getStringFromTemplate(firstName, lastName) {
+  return `Hello, ${firstName} ${lastName}!`;
 }
 
 /**
@@ -405,9 +405,9 @@ return `Hello, ${firstName} ${lastName}!`
  *   extractNameFromTemplate('Hello, John Doe!') => 'John Doe'
  *   extractNameFromTemplate('Hello, Chuck Norris!') => 'Chuck Norris'
  */
-function extractNameFromTemplate( value ) {
+function extractNameFromTemplate(value) {
   const name = value.match(/\s\w+\s\w+/gi);
-  return name ? name.join("").trim() : "";
+  return name ? name.join('').trim() : '';
 }
 
 /**
@@ -421,8 +421,8 @@ function extractNameFromTemplate( value ) {
  *   unbracketTag('<span>') => 'span'
  *   unbracketTag('<a>') => 'a'
  */
-function unbracketTag(str ) {
-  return str.replace(/[<>]/g, "");
+function unbracketTag(str) {
+  return str.replace(/[<>]/g, '');
 }
 
 /**
@@ -441,7 +441,7 @@ function unbracketTag(str ) {
  *   'info@gmail.com' => ['info@gmail.com']
  */
 function extractEmails(str) {
-  return str.split(";");
+  return str.split(';');
 }
 
 /**
@@ -461,8 +461,8 @@ function extractEmails(str) {
  *
  */
 function encodeToRot13(str) {
-  const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-  const cipher = "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
+  const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+  const cipher = 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm';
   return str.replace(/[a-z]/gi, (letter) => cipher[alphabet.indexOf(letter)]);
 }
 
