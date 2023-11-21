@@ -54,7 +54,7 @@ function isString(value) {
  *   concatenateStrings('', 'bb') => 'bb'
  */
 function concatenateStrings(value1, value2) {
-  return value1 + value2;
+  return value1.concat(value2);
 }
 
 /**
@@ -69,7 +69,7 @@ function concatenateStrings(value1, value2) {
  *   getFirstChar('') => ''
  */
 function getFirstChar(value) {
-  return value.length ? value[0] : '';
+  return value.charAt();
 }
 
 /**
@@ -184,6 +184,7 @@ function removeLastOccurrences(str, value) {
  *   sumOfCodes() => 0
  */
 function sumOfCodes(str) {
+  if (!str) return 0
   return str.split('').reduce((sum, cur) => cur.charCodeAt() + sum, 0);
 }
 
@@ -295,7 +296,7 @@ function containsSubstring(str, substring) {
  *   countVowels('XYZ') => 1
  */
 function countVowels( str ) {
-  const newStr = str.match(/[aeiou]/gi);
+  const newStr = str.match(/[aeiouy]/gi);
   return newStr ? newStr.length : 0;
 }
 
@@ -313,8 +314,8 @@ function countVowels( str ) {
  *   isPalindrome('No lemon, no melon') => true
  */
 function isPalindrome(str) {
-  const newStr = str.toLocaleLowerCase().replace(/\s/g, '');
-  return newStr === newStr.split('').reverse().join('');
+  const newStr = str.toLowerCase().replace(/\W/g, "");
+  return newStr === newStr.split("").reverse().join("");
 }
 
 /**
@@ -367,7 +368,14 @@ function reverseWords( str ) {
  *   invertCase('12345') => '12345'
  */
 function invertCase( str ) {
-
+  return str
+    .split("")
+    .map((letter) =>
+      letter === letter.toLowerCase()
+        ? letter.toUpperCase()
+        : letter.toLowerCase()
+    )
+    .join("");
 }
 
 /**
@@ -383,8 +391,8 @@ function invertCase( str ) {
  *   getStringFromTemplate('John','Doe') => 'Hello, John Doe!'
  *   getStringFromTemplate('Chuck','Norris') => 'Hello, Chuck Norris!'
  */
-function getStringFromTemplate(/* firstName, lastName */) {
-  throw new Error('Not implemented');
+function getStringFromTemplate( firstName, lastName ) {
+return `Hello, ${firstName} ${lastName}!`
 }
 
 /**
@@ -397,8 +405,9 @@ function getStringFromTemplate(/* firstName, lastName */) {
  *   extractNameFromTemplate('Hello, John Doe!') => 'John Doe'
  *   extractNameFromTemplate('Hello, Chuck Norris!') => 'Chuck Norris'
  */
-function extractNameFromTemplate(/* value */) {
-  throw new Error('Not implemented');
+function extractNameFromTemplate( value ) {
+  const name = value.match(/\s\w+\s\w+/gi);
+  return name ? name.join("").trim() : "";
 }
 
 /**
@@ -412,8 +421,8 @@ function extractNameFromTemplate(/* value */) {
  *   unbracketTag('<span>') => 'span'
  *   unbracketTag('<a>') => 'a'
  */
-function unbracketTag(/* str */) {
-  throw new Error('Not implemented');
+function unbracketTag(str ) {
+  return str.replace(/[<>]/g, "");
 }
 
 /**
@@ -431,8 +440,8 @@ function unbracketTag(/* str */) {
  *   ],
  *   'info@gmail.com' => ['info@gmail.com']
  */
-function extractEmails(/* str */) {
-  throw new Error('Not implemented');
+function extractEmails(str) {
+  return str.split(";");
 }
 
 /**
@@ -451,8 +460,10 @@ function extractEmails(/* str */) {
  *    => 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm'
  *
  */
-function encodeToRot13(/* str */) {
-  throw new Error('Not implemented');
+function encodeToRot13(str) {
+  const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+  const cipher = "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
+  return str.replace(/[a-z]/gi, (letter) => cipher[alphabet.indexOf(letter)]);
 }
 
 /**
